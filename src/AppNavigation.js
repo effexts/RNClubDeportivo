@@ -22,19 +22,25 @@ const AppDrawer = createDrawerNavigator({
     Perfil: Profile,
     Talleres: Workshops
 });
+
 const AuthStack = createStackNavigator({
-    IniciarSesion: {
-        screen: LogIn,
-        navigationOptions: ({ navigation }) => ({ headerMode: 'none'})
-    },
+    IniciarSesion: LogIn,
     Registrarse: {
         screen: SignUp,
-        navigationOptions: ({ navigation }) => ({ headerMode: 'float', title: 'Registro'})
+        navigationOptions: {
+            title: 'Registro',
+            headerTintColor: '#ffffff',
+            headerStyle: {
+                backgroundColor: '#22213f'
+            },
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+        }
     },
-    OlvidarPassdw: {
-        screen: ForgotPasswd,
-        navigationOptions: ({ navigation }) => ({ headerMode: 'float', title: 'Recuperar Contraseña'})
-    }
+    OlvidarPassdw: ForgotPasswd
+},{
+    headerMode:'float'
 });
 
 export default PrimaryNav = createSwitchNavigator({
@@ -42,56 +48,6 @@ export default PrimaryNav = createSwitchNavigator({
     App: AppDrawer,
     Auth: AuthStack
 },{
-    initialRouteName: 'AuthLoading'
+    initialRouteName: 'Auth',
+
 })
-
-
-
-
-
-//Drawer Stack
-/* const appDrawerStack = createDrawerNavigator({
-    noticias: { screen: Noticias },
-    profile: { screen: Profile },
-    workshops: { screen: Workshops }
-}, {
-    gesturesEnabled: false
-});
-
-const DrawerNavigation = createStackNavigator({
-    DrawerStack: { screen: appDrawerStack }
-}, {
-    headerMode: 'float',
-    navigationOptions: ({navigation}) => ({
-        headerStyle: {backgroundColor:'#deb01f'},
-        title: 'LoggedIn, Clubdeportivo',
-        gesturesEnabled: false,
-        headerLeft: <Text onPress={() => {
-            navigation.state.index === 0 ? navigation.navigate('DrawerOpen'):navigation.navigate('DrawerClose')
-        }}>Menu</Text>
-    })
-});
-
-const LoginStack = createStackNavigator({
-    loginScreen: { screen: LogIn },
-    signUpScreen: { screen: SignUp },
-    forgottenPasswordScreen: { screen: ForgotPasswd }
-}, {
-    headerMode: 'none',
-    navigationOptions: {
-        headerStyle: { backgroundColor: 'red' },
-        title: 'NotLoggedIn'
-    }
-})
-
-const PrimaryNav = createStackNavigator({
-    loginStack: { screen: LoginStack },
-    drawerStack: { screen: DrawerNavigation }
-}, {
-    headerMode: 'none',
-    title: 'Principal',
-    initialRouteName: 'loginStack',
-    transitionConfig: noTransitionConfig
-})
-
-export default PrimaryNav; */

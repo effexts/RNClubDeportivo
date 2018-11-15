@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
+import { createStackNavigator, navigation, navigationOptions } from 'react-navigation'
 import Logo from '../components/Logo';
 
 class SignUp extends Component {
+
     state = { email: '', password: '', names: '', labelEmail:'Correo Electrónico' };
+
     render() {
         return (
             <ScrollView contentContainerStyle={styles.container}>

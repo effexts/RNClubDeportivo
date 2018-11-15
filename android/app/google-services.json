@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "341838760662",
+    "firebase_url": "https://auth-64f37.firebaseio.com",
+    "project_id": "auth-64f37",
+    "storage_bucket": "auth-64f37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341838760662:android:59c6335a69daca78",
+        "android_client_info": {
+          "package_name": "cl.uta.clubdeportivo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341838760662-r79i7nfu6ed0eovnnvk9fega3pfnp3bu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOGq6qMdqekZWQ6n7WsA4nTFwii0t4Rlo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341838760662:android:8e66c65605ee0e73",
+        "android_client_info": {
+          "package_name": "com.auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341838760662-r79i7nfu6ed0eovnnvk9fega3pfnp3bu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOGq6qMdqekZWQ6n7WsA4nTFwii0t4Rlo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

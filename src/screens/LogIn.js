@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView} from 'react-native';
 import { TextInput, Button, HelperText, Text, TouchableRipple } from 'react-native-paper';
+import firebase from 'react-native-firebase';
 import Logo from '../components/Logo';
 
-class LogIn extends Component {
 
-    state = { email: '', password: '', names: '', labelEmail:'Correo Electrónico'   };
+class LogIn extends Component {
+    static navigationOptions = {
+        header:null
+    }
+    state = { email: 'effexts@gmail.com', password: '123123', names: '', labelEmail:'Correo Electrónico'   };
     render() {
         return (
             <ScrollView contentContainerStyle={styles.container}>
@@ -58,21 +62,20 @@ class LogIn extends Component {
     signIn() {
         const { email, password } = this.state;
         if (!email || !password) {
-          this.setState({error:'Los campos no deben estar vacíos', loading: false});
+          alert('Los campos no deben estar vacíos');
           return
-          
         }
-    
-        this.setState({ error: '', loading: true });
-    
+
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then(this.onLoginSuccess.bind(this))
-        .catch(() => {
-          firebase.auth().createUserWithEmailAndPassword(email, password)
-          .then(this.onLoginSuccess.bind(this))
-          .catch(this.onLoginFail.bind(this));
+        .catch(function(error){
+            console.log(error)
         });
-      }
+    }
+    onLoginSuccess() {
+        console.log('correcto')
+    }
+
 }
 
 const styles = StyleSheet.create({

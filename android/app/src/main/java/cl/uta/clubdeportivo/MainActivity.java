@@ -1,4 +1,4 @@
-package com.clubdeportivo;
+package cl.uta.clubdeportivo;
 
 import com.facebook.react.ReactActivity;
 

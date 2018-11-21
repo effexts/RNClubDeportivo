@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView} from 'react-native';
-import { TextInput, Button, HelperText, Text, TouchableRipple } from 'react-native-paper';
+import { StyleSheet, View, ScrollView, Alert} from 'react-native';
+import { TextInput, Button, HelperText, Text, TouchableRipple, Portal, Dialog, Paragraph } from 'react-native-paper';
 import firebase from 'react-native-firebase';
 import Logo from '../components/Logo';
 
 
 class LogIn extends Component {
+    constructor(props) {
+        super(props);
+        this.refEmail = React.createRef();
+        this.passwd = React.createRef();
+    }
     static navigationOptions = {
         header:null
     }
@@ -15,6 +20,7 @@ class LogIn extends Component {
             <ScrollView contentContainerStyle={styles.container}>
                 <Logo />
                 <TextInput
+                        ref={this.refEmail}
                         style={styles.textInput}
                         placeholder='Correo'
                         label={this.state.labelEmail}
@@ -31,6 +37,7 @@ class LogIn extends Component {
                         error={ this.state.email!=='' && !this.state.email.includes('@')}
                     />
                 <TextInput
+                    ref={this.passwd}
                     style={styles.textInput}
                     mode='flat'
                     placeholder='Contraseña'
@@ -69,11 +76,38 @@ class LogIn extends Component {
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then(this.onLoginSuccess.bind(this))
         .catch(function(error){
-            console.log(error)
-        });
+            const errorCode = error.code;
+            console.log(errorCode);
+            const errorMessage = error.message;
+            console.log(errorMessage);
+            switch (errorCode) {
+                case 'auth/invalid-email':
+                    return ( Alert.alert("Aviso","Correo Inválido",
+                        [
+                            {text: 'Aceptar', onPress: () => this.refEmail.current.focus() }
+                        ]
+                    ));
+                case 'auth/user-disabled':
+                    return ( Alert.alert("Aviso","Usuario deshabilitado") );
+                case 'auth/user-not-found':
+                    return Alert.alert("Error", "No existe un usuario registrado para ese correo",
+                      [
+                        
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                        {text: '¿Registrarse?', onPress: () => this.props.navigation.navigate('Registrarse') },
+                      ],
+                      { cancelable: false }
+                            ); 
+                case 'auth/wrong-password':
+                    return ( Alert.alert("Aviso", "La contraseña introducida es incorrecta") );           
+                default:
+                    break;
+            }
+        }.bind(this));
     }
+
     onLoginSuccess() {
-        console.log('correcto')
+        this.props.navigation.navigate('Inicio');
     }
 
 }

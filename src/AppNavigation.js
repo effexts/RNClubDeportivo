@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Animated, Easing } from 'react-native';
+import { Text, Animated, Easing, TouchableOpacity, Image } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, createSwitchNavigator } from 'react-navigation';
 import LogIn from './screens/LogIn';
 import Noticias from './screens/Noticias';
@@ -9,19 +9,28 @@ import SignUp from './screens/SignUp';
 import ForgotPasswd from './screens/ForgotPasswd';
 import AuthLoadingScreen from './screens/AuthLoadingScreen'
 
-const noTransitionConfig = () => ({
+/* const noTransitionConfig = () => ({
     transitionSpec: {
         duration: 0,
         timing: Animated.timing,
         easing: Easing.step0
     }
-});
+}); */
 
 const AppDrawer = createDrawerNavigator({
-    Inicio: Noticias,
+    Inicio: {
+        screen: Noticias,
+        navigationOptions:{
+            headerMode:'screen',
+            title:'Noticia'
+        }
+    },
     Perfil: Profile,
     Talleres: Workshops
+},{
+    drawerBackgroundColor:'#678fca'
 });
+
 
 const AuthStack = createStackNavigator({
     IniciarSesion: LogIn,
@@ -48,6 +57,7 @@ export default PrimaryNav = createSwitchNavigator({
     App: AppDrawer,
     Auth: AuthStack
 },{
-    initialRouteName: 'Auth',
+    initialRouteName: 'App',
+    headerMode:'none'
 
 })

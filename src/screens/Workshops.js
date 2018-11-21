@@ -12,6 +12,7 @@ import {
   ListView,
   TouchableOpacity
 } from 'react-native';
+import Header from '../components/Header'
 
 export default class Workshops extends Component {
 
@@ -31,32 +32,35 @@ export default class Workshops extends Component {
 
   render() {
     return (
-      <ListView enableEmptySections={true}
-        dataSource={this.state.dataSource}
-        renderRow={(service) => {
-          return (
-            <View style={styles.box}>
-              <Image style={styles.image} source={{uri: service.image}} />
-              <View style={styles.boxContent}>
-                <Text style={styles.title}>Title</Text>
-                <Text style={styles.description}>Lorem ipsum dolor sit amet, elit consectetur</Text>
-                <View style={styles.buttons}>
-                  <TouchableHighlight style={[styles.button, styles.view]} onPress={() => this.clickListener('login')}>
-                    <Image style={styles.icon} source={{uri: 'https://png.icons8.com/ok/androidL/30/ffffff'}}/>
-                  </TouchableHighlight>
+      <View>
+        <Header title="Talleres" navigation={this.props.navigation}/>
+        <ListView enableEmptySections={true}
+          dataSource={this.state.dataSource}
+          renderRow={(service) => {
+            return (
+              <View style={styles.box}>
+                <Image style={styles.image} source={{uri: service.image}} />
+                <View style={styles.boxContent}>
+                  <Text style={styles.title}>Title</Text>
+                  <Text style={styles.description}>Lorem ipsum dolor sit amet, elit consectetur</Text>
+                  <View style={styles.buttons}>
+                    <TouchableHighlight style={[styles.button, styles.view]} onPress={() => this.clickListener('login')}>
+                      <Image style={styles.icon} source={{uri: 'https://png.icons8.com/ok/androidL/30/ffffff'}}/>
+                    </TouchableHighlight>
 
-                  <TouchableHighlight style={[styles.button, styles.profile]} onPress={() => this.clickListener('login')}>
-                    <Image style={styles.icon} source={{uri: 'https://png.icons8.com/male-user/win8/30/ffffff'}}/>
-                  </TouchableHighlight>
+                    <TouchableHighlight style={[styles.button, styles.profile]} onPress={() => this.clickListener('login')}>
+                      <Image style={styles.icon} source={{uri: 'https://png.icons8.com/male-user/win8/30/ffffff'}}/>
+                    </TouchableHighlight>
 
-                  <TouchableHighlight style={[styles.button, styles.message]} onPress={() => this.clickListener('login')}>
-                    <Image style={styles.icon} source={{uri: 'https://png.icons8.com/envelope/p1em/30/ffffff'}}/>
-                  </TouchableHighlight>
+                    <TouchableHighlight style={[styles.button, styles.message]} onPress={() => this.clickListener('login')}>
+                      <Image style={styles.icon} source={{uri: 'https://png.icons8.com/envelope/p1em/30/ffffff'}}/>
+                    </TouchableHighlight>
+                  </View>
                 </View>
               </View>
-            </View>
-          )
-        }}/>
+            )
+          }}/>
+        </View>
     );
   }
 }

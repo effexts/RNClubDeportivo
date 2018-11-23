@@ -8,11 +8,9 @@ const theme = {
     roundness: 0,
     colors: {
       ...DefaultTheme.colors,
-      primary: '#deb01f',
-      accent: '#678fca',
-      background: '#678fca',
-      text: '#fff',
-      surface: '#22213f',
+      primary: '#446ba9',
+      accent: '#deb01f',
+      background: '#7699db',
       disabled: color('#fff')
         .alpha(0.86)
         .rgb()
@@ -21,7 +19,7 @@ const theme = {
         .alpha(0.9)
         .rgb()
         .string(),
-      backdrop: color('#fff')
+      backdrop: color('#0ff')
         .alpha(0.5)
         .rgb()
         .string(),

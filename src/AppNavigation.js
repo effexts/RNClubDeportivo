@@ -8,6 +8,7 @@ import Workshops from './screens/Workshops';
 import SignUp from './screens/SignUp';
 import ForgotPasswd from './screens/ForgotPasswd';
 import AuthLoadingScreen from './screens/AuthLoadingScreen'
+import colors from './assets/config/colors';
 
 /* const noTransitionConfig = () => ({
     transitionSpec: {
@@ -40,7 +41,7 @@ const AuthStack = createStackNavigator({
             title: 'Registro',
             headerTintColor: '#ffffff',
             headerStyle: {
-                backgroundColor: '#22213f'
+                backgroundColor: colors.primaryLight
             },
             headerTitleStyle: {
                 fontWeight: 'bold',
@@ -57,7 +58,7 @@ export default PrimaryNav = createSwitchNavigator({
     App: AppDrawer,
     Auth: AuthStack
 },{
-    initialRouteName: 'App',
+    initialRouteName: 'AuthLoading',
     headerMode:'none'
 
 })

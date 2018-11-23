@@ -6,12 +6,21 @@ import {
     TouchableWithoutFeedback,
     Image
 } from 'react-native';
+import { Appbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 const Header = props => {
     //const {navigate} = props.navigation
     return (
-        <View style={styles.container}>
+        <Appbar.Header>
+            <Appbar.Action icon="menu" onPress={() => props.navigation.toggleDrawer()} />
+
+            <Appbar.Content
+                title={props.title}
+                
+            />
+        </Appbar.Header>
+/*         <View style={styles.container}>
             <TouchableWithoutFeedback onPress={() => props.navigation.toggleDrawer()}>
                 <Icon 
                     name="bars"
@@ -20,7 +29,7 @@ const Header = props => {
                 />
             </TouchableWithoutFeedback>
             <View style={{alignSelf:'center', flex:1}}><Text style={styles.headerTitle}>{props.title}</Text></View>
-        </View>
+        </View> */
     )
 }
 

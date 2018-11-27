@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { Provider as StoreProvider } from 'react-redux';
+import { createStore } from 'redux';
 import color from 'color';
 import PrimaryNav from './AppNavigation';
+import reducers from './reducers';
 
 const theme = {
     ...DefaultTheme,
@@ -32,9 +35,11 @@ class App extends Component {
     }
     render() {
         return (
-            <PaperProvider theme={theme}>
-                <PrimaryNav />
-            </PaperProvider>
+            <StoreProvider store={createStore(reducers)}>
+                <PaperProvider theme={theme}>
+                    <PrimaryNav />
+                </PaperProvider>
+            </StoreProvider>
         );
     }
 }

@@ -5,6 +5,9 @@ import firebase from 'react-native-firebase';
 import Logo from '../components/Logo';
 import colors from '../assets/config/colors'
 
+import { connect } from 'react-redux'
+import { emailChanged, passwordChanged } from '../actions';
+
 
 class LogIn extends Component {
     constructor(props) {
@@ -15,7 +18,7 @@ class LogIn extends Component {
     static navigationOptions = {
         header:null
     }
-    state = { email: 'effexts@gmail.com', password: '123123', names: '', labelEmail:'Correo Electrónico'   };
+    
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -29,18 +32,11 @@ class LogIn extends Component {
                             ref={this.refEmail}
                             style={styles.textInput}
                             placeholder='Correo'
-                            label={this.state.labelEmail}
-                            value={this.state.email}
-                            onChangeText={email => {
-                                this.setState({ email })
-                                if (email!=='' && !email.includes('@')) {
-                                    this.setState({ labelEmail:'No es una dirección de correo válida'});
-                                } else {
-                                    this.setState({ labelEmail: 'Correo Electrónico'})
-                                }
-                            }}
+                            label={this.props.labelEmail}
+                            value={this.props.email}
+                            onChangeText={this.onEmailChanged.bind(this)}
                             mode='flat'
-                            error={ this.state.email!=='' && !this.state.email.includes('@')}
+                            error={ this.props.email!=='' && !this.props.email.includes('@')}
                         />
                     <TextInput
                         theme={{ colors: { text:'#FFF', placeholder:'#22213f'}}}
@@ -49,8 +45,8 @@ class LogIn extends Component {
                         mode='flat'
                         placeholder='Contraseña'
                         label='Contraseña'
-                        value={this.state.password}
-                        onChangeText={password => this.setState({ password })}
+                        value={this.props.password}
+                        onChangeText={this.onPasswordChanged.bind(this)}
                         secureTextEntry
                     />
                     <Button
@@ -74,8 +70,14 @@ class LogIn extends Component {
         );
     }
 
+    onEmailChanged(text) {
+        this.props.emailChanged(text);
+    }
+    onPasswordChanged(text) {
+        this.props.passwordChanged(text);
+    }
     signIn() {
-        const { email, password } = this.state;
+        const { email, password } = this.props
         if (!email || !password) {
           alert('Los campos no deben estar vacíos');
           return
@@ -158,4 +160,14 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LogIn;
+const mapStateToProps = (state, ownProps) => {
+        console.log(state);
+        return ({
+            email: state.auth.email,
+            labelEmail: state.auth.labelEmail,
+            password: state.auth.password
+        })
+}
+
+
+export default connect(mapStateToProps, { emailChanged, passwordChanged })(LogIn);

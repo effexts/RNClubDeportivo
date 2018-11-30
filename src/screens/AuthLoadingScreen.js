@@ -1,16 +1,12 @@
 import React from 'react';
 import { ActivityIndicator, AsyncStorage, StatusBar, View } from 'react-native';
+import firebase from 'react-native-firebase';
+import { connect } from 'react-redux';
 
 class AuthLoadingScreen extends React.Component {
     constructor(props) {
         super(props);
-        this._bootstrapAsync();
     }
-
-    _bootstrapAsync = async () => {
-        const userToken = await AsyncStorage.getItem('userToken');
-        this.props.navigation.navigate(userToken ? 'App':'Auth');
-    };
 
     async initFcm() {
         await firebase.messaging().subscribeToTopic('noticias');
@@ -80,11 +76,17 @@ class AuthLoadingScreen extends React.Component {
         });
     }
  
+    componentWillMount() {
+        firebase.auth().onAuthStateChanged((user) => {
+              this.props.navigation.navigate(user ? 'App':'Auth');
+        });
+    }
+
     componentWillUnMount() {
         this.notificationDisplayedListener();
         this.notificationListener();
         this.notificationOpenedListener();
-        Linking.removeEventListener('url', this.handleOpenURL);
+        Linking.removeEventListener('url', this.handleOpenURL );
         rol();
     }
 
@@ -97,5 +99,6 @@ class AuthLoadingScreen extends React.Component {
         );
     }
 }
+
 
 export default AuthLoadingScreen;

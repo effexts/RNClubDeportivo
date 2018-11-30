@@ -15,13 +15,14 @@ class Noticias extends Component {
   state = { posts: [], isLoading:true };
 
   componentWillMount() {
-    axios.get('http://clubdeportivo.uta.cl/?rest_route=/wp/v2/posts&_embed')
+    //axios.get('http://clubdeportivo.uta.cl/?rest_route=/wp/v2/posts&_embed')
+    axios.get('http://clubdeportivo.rincondeantonia.cl/wp-json/wp/v2/posts?_embed')
     .then(response => {
       this.setState({ posts: response.data, isLoading:false });
-      console.log(response.data);
+      //console.log(response.data);
     })
     .catch((error) => {
-      console.error(error);
+      //console.error(error);
     });
   }
 
@@ -37,12 +38,12 @@ class Noticias extends Component {
       }
       else {
         return (
-          <View>
+          <View style={{flex:1}}>
             <Header title="Noticias" navigation={this.props.navigation}/>
           <ScrollView>
 
             {this.state.posts.map((post, index) => (
-              <Posts key={post.id} posts={post} />
+              <Posts key={post.id} posts={post} navigation={this.props.navigation} />
               ))
             }
           </ScrollView>

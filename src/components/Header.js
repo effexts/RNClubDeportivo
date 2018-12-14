@@ -3,7 +3,7 @@ import { Appbar } from 'react-native-paper';
 
 const Header = props => {
     //const {navigate} = props.navigation
-        if(props.title === 'Noticias' || props.title === 'Talleres'){
+        if(props.title === 'Noticias' || props.title === 'Mis Actividades Deportivas'){
             return (
                 <Appbar.Header>
                     <Appbar.Action icon="menu" onPress={() => props.navigation.toggleDrawer()} />

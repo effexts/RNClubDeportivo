@@ -3,7 +3,7 @@ import { View, ScrollView, ActivityIndicator } from 'react-native';
 import { Button, Card, Title, Paragraph } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Header from '../components/Header';
-import axios from 'axios';
+import Axios from 'axios';
 import Posts from '../components/Posts';
 
 class Noticias extends Component {
@@ -16,7 +16,7 @@ class Noticias extends Component {
 
   componentWillMount() {
     //axios.get('http://clubdeportivo.uta.cl/?rest_route=/wp/v2/posts&_embed')
-    axios.get('http://clubdeportivo.rincondeantonia.cl/wp-json/wp/v2/posts?_embed')
+    Axios.get('http://clubdeportivo.rincondeantonia.cl/wp-json/wp/v2/posts?_embed')
     .then(response => {
       this.setState({ posts: response.data, isLoading:false });
       //console.log(response.data);

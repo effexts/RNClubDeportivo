@@ -11,6 +11,7 @@ import AuthLoadingScreen from './screens/AuthLoadingScreen'
 import PostDetail from './screens/PostDetail';
 import colors from './assets/config/colors';
 import firebase from 'react-native-firebase';
+import MisActividadesDep from './screens/ActividadesDep';
 
 /* const noTransitionConfig = () => ({
     transitionSpec: {
@@ -21,6 +22,13 @@ import firebase from 'react-native-firebase';
 }); */
 
 const AppDrawer = createDrawerNavigator({
+    MisActividadesDep: {
+        screen: MisActividadesDep,
+        navigationOptions: {
+            headerMode:'screen',
+            title: 'Mis Actividades Deportivas'
+        }
+    },
     Inicio: {
         screen: Noticias,
         navigationOptions:{
@@ -29,7 +37,6 @@ const AppDrawer = createDrawerNavigator({
         }
     },
     Perfil: Profile,
-    Talleres: Workshops
 },  {
     contentComponent:(props) => (
       <View style={{flex:1}}>
@@ -62,7 +69,7 @@ const AppDrawer = createDrawerNavigator({
     ),
     drawerOpenRoute: 'DrawerOpen',
     drawerCloseRoute: 'DrawerClose',
-    drawerToggleRoute: 'DrawerToggle'
+    drawerToggleRoute: 'DrawerToggle',
   }
 );
 

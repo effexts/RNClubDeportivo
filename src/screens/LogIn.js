@@ -87,9 +87,9 @@ class LogIn extends Component {
         .then(this.onLoginSuccess.bind(this))
         .catch(function(error){
             const errorCode = error.code;
-            console.log(errorCode);
+            //console.log(errorCode);
             const errorMessage = error.message;
-            console.log(errorMessage);
+            //console.log(errorMessage);
             switch (errorCode) {
                 case 'auth/invalid-email':
                     return ( Alert.alert("Aviso","Correo Inválido",
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, ownProps) => {
-        console.log(state);
+        //console.log(state);
         return ({
             email: state.auth.email,
             labelEmail: state.auth.labelEmail,
